@@ -12,8 +12,8 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                //Aquí debes poner tu imagen descargada....
-		sh 'docker build -t EjemploDockerHub .'
+                //Aquí debes poner tu repositorio de dockerhub
+		sh 'docker build -t peseca/ejemplodockerhub
             }
         }
         stage('DockerHUB Login') {
