@@ -25,7 +25,7 @@ pipeline {
         stage('Docker Push') {
             steps {
 		//Aquí debes poner tu DockerHub
-                sh 'docker push peseca/ejemplodockerhub:$BUILD_NUMBER'
+                sh 'docker push peseca/ejemplodockerhub'
                 }
             }
         }
