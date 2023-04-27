@@ -13,7 +13,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 //Aquí debes poner tu imagen descargada....
-		sh 'docker build -t EjemploDockerHub.'
+		sh 'docker build -t EjemploDockerHub .'
             }
         }
         stage('DockerHUB Login') {
