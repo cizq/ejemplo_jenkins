@@ -10,7 +10,7 @@ pipeline {
     stage('Build') {
       steps {
         sh 'docker build -t cizq223/dockerhub .'
-        emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+        emailext body: 'Proyecto actualizado', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
       }
     }
     stage('Login') {
@@ -26,7 +26,7 @@ pipeline {
   }
   post {
     always {
-      emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+      emailext body: 'Proyecto actualizado', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Github-jenkins'
       sh 'docker logout'
     }
   }
