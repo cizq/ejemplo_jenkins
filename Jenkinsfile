@@ -13,7 +13,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 //Aquí debes poner tu repositorio de dockerhub
-		sh 'docker build -t https://hub.docker.com/repository/docker/cizq223/dockerhub . '
+		sh 'docker build -t cizq/ejemplo_jenkins . '
             }
         }
         stage('DockerHUB Login') {
