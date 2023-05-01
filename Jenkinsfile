@@ -13,7 +13,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 //Aquí debes poner tu repositorio de dockerhub
-		sh 'docker build -t cizq223/dockerhub . '
+		sh 'docker build -t https://hub.docker.com/repository/docker/cizq223/dockerhub . '
             }
         }
         stage('DockerHUB Login') {
@@ -25,7 +25,7 @@ pipeline {
         stage('Docker Push') {
             steps {
 		//Aquí debes poner tu DockerHub
-                sh 'docker push cizq223/dockerhub'
+                sh 'docker push https://hub.docker.com/repository/docker/cizq223/dockerhub'
                 }
             }
         }
