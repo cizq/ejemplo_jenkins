@@ -1,38 +1,32 @@
 pipeline {
-    agent any
-    environment{
-        DOCKERHUB_CREDS = credentials('dockerhub')
+  agent any
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+  }
+  environment {
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+  }
+  stages {
+    stage('Build') {
+      steps {
+        sh 'docker build -t cizq223/dockerhub .'
+      }
     }
-    stages {
-        stage('Clone Repo') {
-            steps {
-                checkout scm
-                sh 'ls *'
-            }
-        }
-        stage('Build Image') {
-            steps {
-                //Aquí debes poner tu repositorio de dockerhub
-		sh 'docker build -t cizq/ejemplo_jenkins . '
-            }
-        }
-        stage('DockerHUB Login') {
-            steps {
-                
-                sh 'echo $DOCKERHUB_CREDS_PSW | docker login -u $DOCKERHUB_CREDS_USR --password-stdin'                
-                }
-            }
-        stage('Docker Push') {
-            steps {
-		//Aquí debes poner tu DockerHub
-                sh 'docker push https://hub.docker.com/repository/docker/cizq223/dockerhub'
-                }
-            }
-        }
-    post {
-		always {
-			sh 'docker logout'
-		}
-	 }
+    stage('Login') {
+      steps {
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+      }
     }
+    stage('Push') {
+      steps {
+        sh 'docker push cizq223/dockerhub'
+      }
+    }
+  }
+  post {
+    always {
+      sh 'docker logout'
+    }
+  }
+}
 
